@@ -1,0 +1,7 @@
+component,language,version,dependencies,dependency_list,maintenance_status
+Authentication,Python,2.1,3,"Database_Layer,User_Service,Notification_Service",Active
+Payment_Module,Python,1.4,4,"Authentication,Database_Layer,Report_Module,User_Service",Legacy
+User_Service,Java,1.8,3,"Database_Layer,Authentication,Notification_Service",Maintenance
+Notification_Service,Python,3.0,2,"Database_Layer,User_Service",Active
+Report_Module,Java,1.2,3,"Database_Layer,Payment_Module,Authentication",Legacy
+Database_Layer,SQL,5.1,1,"Authentication",Maintenance
