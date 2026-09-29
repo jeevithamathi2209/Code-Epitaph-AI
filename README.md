@@ -4,6 +4,10 @@
 
 Code Epitaph AI is a software-engineering intelligence platform that analyzes legacy system dependencies, identifies structural risks, detects unusual component patterns using AI, simulates component failures, and generates modernization priorities.
 
+## Live Demo
+
+🚀 [Try Code Epitaph AI](https://code-epitaph-ai.streamlit.app/)
+
 ## Key Features
 
 * **Dependency Analysis** — Visualizes component relationships using NetworkX.
