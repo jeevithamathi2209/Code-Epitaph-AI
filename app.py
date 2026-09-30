@@ -36,7 +36,7 @@ from src.anomaly_engine import (
 
 st.set_page_config(
     page_title="Code Epitaph AI",
-    page_icon="🧠",
+    
     layout="wide"
 )
 
@@ -90,7 +90,7 @@ st.markdown(
 # HEADER
 # ============================================================
 
-st.title("🧠 Code Epitaph AI")
+st.title("Code Epitaph AI")
 
 st.caption(
     "Legacy System Intelligence & Dependency Risk Analysis"
@@ -554,7 +554,11 @@ elif page == "Component Intelligence":
     )
 
     explanation = generate_component_explanation(
-        row
+        row["risk_score"],
+        row["dependency_count"],
+        row["maintenance_status"],
+        row["priority_score"],
+        row["failure_impact"]
     )
 
     st.info(
@@ -732,6 +736,65 @@ elif page == "Risk Prioritization":
     )
 
 
+    # --------------------------------------------------------
+    # RECOMMENDED ACTION ENGINE
+    # --------------------------------------------------------
+
+    def get_recommended_action(priority_level, maintenance_status):
+
+        level = str(priority_level).upper()
+        status = str(maintenance_status).lower()
+
+        if level == "CRITICAL":
+            return "Immediate modernization and dependency risk reduction."
+
+        elif level == "HIGH":
+            return "Prioritize refactoring and improve maintainability."
+
+        elif level == "MEDIUM":
+            return "Monitor closely and optimize dependency structure."
+
+        if status == "legacy":
+            return "Maintain with monitoring and plan future modernization."
+
+        return "Continue regular maintenance and monitoring."
+
+
+    action_df = df.copy()
+
+    action_df["recommended_action"] = action_df.apply(
+        lambda row: get_recommended_action(
+            row["priority_level"],
+            row["maintenance_status"]
+        ),
+        axis=1
+    )
+
+
+    st.subheader(
+        "Recommended Engineering Actions"
+    )
+
+    action_display = action_df[
+        [
+            "component",
+            "priority_level",
+            "priority_score",
+            "risk_score",
+            "recommended_action"
+        ]
+    ].sort_values(
+        "priority_score",
+        ascending=False
+    )
+
+    st.dataframe(
+        action_display,
+        use_container_width=True,
+        hide_index=True
+    )
+
+
     st.subheader(
         "Risk Prioritization Table"
     )
@@ -757,6 +820,54 @@ elif page == "Risk Prioritization":
         display_df,
         use_container_width=True,
         hide_index=True
+    )
+
+
+    # --------------------------------------------------------
+    # DOWNLOAD RISK REPORT
+    # --------------------------------------------------------
+
+    report_df = display_df.copy()
+
+    def report_recommended_action(level):
+
+        if level == "CRITICAL":
+            return "Immediate modernization and dependency reduction"
+
+        elif level == "HIGH":
+            return "Prioritize refactoring and improve maintainability"
+
+        elif level == "MEDIUM":
+            return "Monitor closely and optimize dependencies"
+
+        return "Maintain and monitor"
+
+
+    report_df["recommended_action"] = report_df[
+        "priority_level"
+    ].apply(report_recommended_action)
+
+    report_df = report_df.rename(
+        columns={
+            "component": "Component",
+            "risk_score": "Risk Score",
+            "priority_score": "Priority Score",
+            "priority_level": "Priority Level",
+            "dependency_count": "Dependency Count",
+            "failure_impact": "Failure Impact",
+            "maintenance_status": "Maintenance Status",
+            "recommended_action": "Recommended Action"
+        }
+    )
+
+    report_csv = report_df.to_csv(index=False).encode("utf-8")
+
+    st.download_button(
+        label="📥 Download Risk Report",
+        data=report_csv,
+        file_name="code_epitaph_risk_report.csv",
+        mime="text/csv",
+        use_container_width=True
     )
 
 
@@ -939,6 +1050,11 @@ elif page == "Failure Simulator":
         "Structural simulation of component failure impact"
     )
 
+    st.info(
+        "Select a component to simulate a failure and inspect "
+        "downstream structural impact on the legacy system."
+    )
+
 
     selected_component = st.selectbox(
         "Select component to fail",
@@ -981,6 +1097,22 @@ elif page == "Failure Simulator":
 
 
     st.divider()
+
+    # --------------------------------------------------------
+    # FAILURE IMPACT SUMMARY
+    # --------------------------------------------------------
+
+    impact_col1, impact_col2 = st.columns(2)
+
+    impact_col1.metric(
+        "Dependency Count",
+        int(row["dependency_count"])
+    )
+
+    impact_col2.metric(
+        "Priority Score",
+        f"{row["priority_score"]:.1f}/100"
+    )
 
 
     dependencies = [
@@ -1157,6 +1289,40 @@ elif page == "Failure Simulator":
 
             st.success(
                 "No downstream components detected."
+            )
+
+
+        # ----------------------------------------------------
+        # RECOVERY RECOMMENDATION
+        # ----------------------------------------------------
+
+        st.subheader(
+            "Recovery Recommendation"
+        )
+
+        if row["priority_level"] == "CRITICAL":
+
+            st.error(
+                "Immediate isolation and modernization recommended. "
+                "Review dependent components before restoring service."
+            )
+
+        elif row["priority_level"] == "HIGH":
+
+            st.warning(
+                "Prioritize recovery and dependency decoupling for this component."
+            )
+
+        elif row["priority_level"] == "MEDIUM":
+
+            st.info(
+                "Monitor the affected dependency chain and plan targeted remediation."
+            )
+
+        else:
+
+            st.success(
+                "Low-priority failure impact. Continue monitoring and document recovery steps."
             )
 
 
