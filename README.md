@@ -2,31 +2,31 @@
 
 ### Legacy System Intelligence & Dependency Risk Analysis
 
-Code Epitaph AI is a software-engineering intelligence platform that analyzes legacy system dependencies, identifies structural risks, detects unusual component patterns using AI, simulates component failures, and generates modernization priorities.
+Code Epitaph AI is an engineering intelligence platform that analyzes legacy system architecture, identifies dependency risks, detects structural anomalies, simulates failure impact, and generates modernization priorities.
 
-## Live Demo
+### 🚀 Live Demo
 
-🚀 [Try Code Epitaph AI](https://code-epitaph-ai.streamlit.app/)
+[**Launch Code Epitaph AI →**](https://code-epitaph-ai.streamlit.app/)
 
-## Key Features
+### ⚡ Core Capabilities
 
-* **Dependency Analysis** — Visualizes component relationships using NetworkX.
-* **Risk Intelligence** — Calculates component risk and engineering priority.
-* **AI Anomaly Detection** — Uses Isolation Forest to identify unusual structural patterns.
-* **Failure Simulation** — Performs what-if analysis for component failures.
-* **Modernization Roadmap** — Prioritizes components for refactoring and modernization.
-* **Interactive Dashboard** — Provides system-wide insights through Streamlit.
+* **Dependency Intelligence** — Graph-based analysis of component relationships using NetworkX.
+* **Risk Prioritization** — Quantifies component risk and engineering priority.
+* **AI Anomaly Detection** — Uses Isolation Forest to detect unusual structural patterns.
+* **Failure Simulation** — Performs what-if analysis of component failures and dependency loss.
+* **Modernization Intelligence** — Generates prioritized refactoring and modernization recommendations.
+* **Engineering Reports** — Exports prioritized risk analysis for further assessment.
 
-## Architecture
+### 🧠 Architecture
 
-
+```text
 Legacy Data
     ↓
 Preprocessing
     ↓
 Dependency Graph
     ↓
-Risk & Priority Analysis
+Risk & Priority Engine
     ↓
 AI Anomaly Detection
     ↓
@@ -35,27 +35,33 @@ Failure Simulation
 Modernization Roadmap
 ```
 
-## Tech Stack
+### 🛠️ Technology
 
 **Python · Pandas · NumPy · Scikit-learn · NetworkX · Plotly · Streamlit**
 
-### AI
+**ML:** Isolation Forest
+**Graph Analysis:** NetworkX
+**Visualization:** Plotly
+**Deployment:** Streamlit Community Cloud
 
-**Isolation Forest — Unsupervised Anomaly Detection**
+### 📊 Dashboard
 
-Analyzes:
+| Module                  | Purpose                           |
+| ----------------------- | --------------------------------- |
+| Overview                | System health & risk intelligence |
+| Component Intelligence  | Component-level assessment        |
+| Risk Prioritization     | Engineering priority analysis     |
+| Dependency Analysis     | Architecture & dependency graph   |
+| Failure Simulator       | What-if impact analysis           |
+| Modernization Roadmap   | Phased modernization planning     |
+| AI Anomaly Intelligence | Structural anomaly detection      |
 
-* Risk score
-* Dependency complexity
-* Failure impact
-* Graph centrality
-* Priority score
-
-## Project Structure
+### 📁 Structure
 
 ```text
-Code Epitaph AI/
+Code-Epitaph-AI/
 ├── app.py
+├── main.py
 ├── data/
 ├── src/
 │   ├── data_loader.py
@@ -68,14 +74,20 @@ Code Epitaph AI/
 └── README.md
 ```
 
-## Run Locally
+### 💻 Run Locally
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/jeevithamathi2209/Code-Epitaph-AI.git
 cd Code-Epitaph-AI
 pip install -r requirements.txt
 streamlit run app.py
+```
 
-## Project Focus
+### 🔗 Links
 
-**Legacy System Analysis · Dependency Intelligence · AI Anomaly Detection · Failure Impact Analysis · Software Modernization**
+**Live:** https://code-epitaph-ai.streamlit.app/
+**GitHub:** https://github.com/jeevithamathi2209/Code-Epitaph-AI
+
+---
+
+**Code Epitaph AI — Turning legacy system complexity into actionable engineering intelligence.**
