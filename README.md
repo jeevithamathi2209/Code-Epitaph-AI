@@ -8,6 +8,10 @@ Code Epitaph AI is an engineering intelligence platform that analyzes legacy sys
 
 [**Launch Code Epitaph AI →**](https://code-epitaph-ai.streamlit.app/)
 
+## 📊 Dashboard Preview
+
+![Code Epitaph AI Dashboard](assets/dashboard.png)
+
 ### ⚡ Core Capabilities
 
 * **Dependency Intelligence** — Graph-based analysis of component relationships using NetworkX.
