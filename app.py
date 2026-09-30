@@ -1111,7 +1111,7 @@ elif page == "Failure Simulator":
 
     impact_col2.metric(
         "Priority Score",
-        f"{row["priority_score"]:.1f}/100"
+        f"{row['priority_score']:.1f}/100"
     )
 
 
